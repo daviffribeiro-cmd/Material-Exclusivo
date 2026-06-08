@@ -990,9 +990,7 @@ function renderGuide() {
       </div>
     </div></div>`;
 
-  const cnSecTitle = `<div class="sec-title" style="margin-bottom:14px"><div class="sec-title-bar"></div><h2>Tópicos que Mais Caem — CN</h2></div>`;
-
-  document.getElementById('sgt-cn').innerHTML = cdHtml + cnSecTitle + buildTopicsGrid(CN_TOPICS) + buildPlanejamento();
+  document.getElementById('sgt-cn').innerHTML = cdHtml + buildPlanejamento();
   renderPlanejamento();
 }
 
