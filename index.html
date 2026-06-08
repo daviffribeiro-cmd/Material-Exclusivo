@@ -66,7 +66,7 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
 .prova-year{font-size:26px;font-weight:900;color:var(--teal);line-height:1}
 .prova-badge{font-size:10px;font-weight:700;background:var(--grad);color:#fff;padding:3px 10px;border-radius:8px;letter-spacing:.3px}
 .prova-btns{padding:12px 14px;display:flex;flex-direction:column;gap:7px}
-.prova-btn{display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:10px;font-size:12.5px;font-weight:600;cursor:pointer;border:none;width:100%;transition:all .2s;text-decoration:none;color:#fff}
+.prova-btn{display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:10px;font-size:12.5px;font-weight:600;cursor:pointer;border:none;width:100%;transition:all .2s;text-decoration:none;color:#fff;font-family:inherit;background:none}
 .prova-btn:hover{filter:brightness(1.15);transform:translateY(-1px)}
 .btn-d1{background:var(--navy)}
 .btn-d2{background:var(--navy2)}
@@ -222,6 +222,41 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
   .provas-grid{grid-template-columns:1fr 1fr}
   .hdr-title{font-size:21px}
 }
+
+/* ── MODAL OVERLAY ── */
+.mo-ov{position:fixed;inset:0;background:rgba(10,20,30,.82);backdrop-filter:blur(5px);z-index:999;display:flex;align-items:center;justify-content:center;padding:16px}
+.mo-box{background:#fff;border-radius:20px;padding:28px 30px;max-width:400px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+
+/* ── TIMER DE PROVA ── */
+.t-exam{font-size:14px;font-weight:700;color:var(--teal);margin-bottom:14px;text-align:center;letter-spacing:.2px}
+.t-wrap{text-align:center;padding:10px 0 6px}
+.t-num{font-size:62px;font-weight:900;color:var(--navy);letter-spacing:3px;font-variant-numeric:tabular-nums;line-height:1}
+.t-lbl{font-size:11px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-top:6px}
+.t-warn{color:#e53e3e!important;animation:tblink .8s infinite}
+@keyframes tblink{0%,100%{opacity:1}50%{opacity:.3}}
+.t-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.t-grid button{padding:11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:opacity .2s;font-family:inherit}
+.t-grid button:hover{opacity:.85}
+.tbtn-go{background:var(--grad);color:#0b1a2b}
+.tbtn-pdf{background:#edf9f3;color:var(--teal);border:2px solid rgba(29,201,158,.4)!important}
+.tbtn-rst{background:#f5f7fa;color:var(--t2)}
+.tbtn-ok{background:#16a34a;color:#fff}
+
+/* ── CRONÔMETRO DE ESTUDOS ── */
+.st-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(16,80,168,.06);margin-top:28px;margin-bottom:24px}
+.st-card-hdr{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:14px 18px;display:flex;align-items:center;gap:10px}
+.st-card-ico{font-size:18px}
+.st-card-title{font-size:13px;font-weight:800;color:#fff}
+.st-card-body{padding:20px}
+.st-wrap{text-align:center;padding:8px 0 4px}
+.st-num{font-size:52px;font-weight:900;color:var(--navy);letter-spacing:3px;font-variant-numeric:tabular-nums;line-height:1}
+.st-lbl{font-size:11px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
+.st-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.st-grid button{padding:10px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:opacity .2s}
+.st-grid button:hover{opacity:.85}
+.stbtn-go{background:var(--grad);color:#0b1a2b}
+.stbtn-rst{background:#f5f7fa;color:var(--t2)}
+.st-total{font-size:12px;color:var(--t3);text-align:center;margin-top:8px}
 </style>
 </head>
 <body>
@@ -307,16 +342,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           <div class="prova-badge">MAIS RECENTE</div>
         </div>
         <div class="prova-btns">
-          <a class="prova-btn btn-d1" href="CPACN%202025%201DIA%20AMARELO%20(1).pdf" target="_blank">
+          <button class="prova-btn btn-d1" onclick="openTimer('CPACN%202025%201DIA%20AMARELO%20(1).pdf','cn1')">
             <span class="prova-btn-ico">📐</span>
             <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
-          <a class="prova-btn btn-d2" href="CPACN%202025%202DIA%20AMARELO%20(1).pdf" target="_blank">
+            <span class="prova-btn-arr">⏱</span>
+          </button>
+          <button class="prova-btn btn-d2" onclick="openTimer('CPACN%202025%202DIA%20AMARELO%20(1).pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências &amp; Hist</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
+            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
+            <span class="prova-btn-arr">⏱</span>
+          </button>
         </div>
       </div>
 
@@ -326,16 +361,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           <div class="prova-badge">CPACN</div>
         </div>
         <div class="prova-btns">
-          <a class="prova-btn btn-d1" href="CPACN-2024_1%C2%BADIA_AMARELA%20(1).pdf" target="_blank">
+          <button class="prova-btn btn-d1" onclick="openTimer('CPACN-2024_1%C2%BADIA_AMARELA%20(1).pdf','cn1')">
             <span class="prova-btn-ico">📐</span>
             <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
-          <a class="prova-btn btn-d2" href="CPACN-2024_2%C2%BADIA_AMARELA%20(1).pdf" target="_blank">
+            <span class="prova-btn-arr">⏱</span>
+          </button>
+          <button class="prova-btn btn-d2" onclick="openTimer('CPACN-2024_2%C2%BADIA_AMARELA%20(1).pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências &amp; Hist</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
+            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
+            <span class="prova-btn-arr">⏱</span>
+          </button>
         </div>
       </div>
 
@@ -345,16 +380,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           <div class="prova-badge">CPACN</div>
         </div>
         <div class="prova-btns">
-          <a class="prova-btn btn-d1" href="2023%20-%201%C2%BA%20Dia%20(Matem%C3%A1tica%20e%20Ingl%C3%AAs)%20%20Prova%20AMARELA.pdf" target="_blank">
+          <button class="prova-btn btn-d1" onclick="openTimer('2023%20-%201%C2%BA%20Dia%20(Matem%C3%A1tica%20e%20Ingl%C3%AAs)%20%20Prova%20AMARELA.pdf','cn1')">
             <span class="prova-btn-ico">📐</span>
             <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
-          <a class="prova-btn btn-d2" href="2023%20-%202%C2%BA%20Dia%20(Portugu%C3%AAs%2C%20Estudos%20Sociais%20e%20Ci%C3%AAncias)%20%20Prova%20AMARELA.pdf" target="_blank">
+            <span class="prova-btn-arr">⏱</span>
+          </button>
+          <button class="prova-btn btn-d2" onclick="openTimer('2023%20-%202%C2%BA%20Dia%20(Portugu%C3%AAs%2C%20Estudos%20Sociais%20e%20Ci%C3%AAncias)%20%20Prova%20AMARELA.pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências &amp; Hist</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
+            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
+            <span class="prova-btn-arr">⏱</span>
+          </button>
         </div>
       </div>
 
@@ -364,16 +399,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           <div class="prova-badge">CPACN</div>
         </div>
         <div class="prova-btns">
-          <a class="prova-btn btn-d1" href="2022%20-%201%C2%BA%20Dia%20(Matem%C3%A1tica%20e%20Ingl%C3%AAs)%20%20Prova%20AMARELA.pdf" target="_blank">
+          <button class="prova-btn btn-d1" onclick="openTimer('2022%20-%201%C2%BA%20Dia%20(Matem%C3%A1tica%20e%20Ingl%C3%AAs)%20%20Prova%20AMARELA.pdf','cn1')">
             <span class="prova-btn-ico">📐</span>
             <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
-          <a class="prova-btn btn-d2" href="CPACN%20-2022%202%C2%B0%20DIA%20-%20AMARELA.pdf" target="_blank">
+            <span class="prova-btn-arr">⏱</span>
+          </button>
+          <button class="prova-btn btn-d2" onclick="openTimer('CPACN%20-2022%202%C2%B0%20DIA%20-%20AMARELA.pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências &amp; Hist</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
+            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
+            <span class="prova-btn-arr">⏱</span>
+          </button>
         </div>
       </div>
 
@@ -383,16 +418,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           <div class="prova-badge">CPACN</div>
         </div>
         <div class="prova-btns">
-          <a class="prova-btn btn-d1" href="Prova%20Amarela-CPACN-2021-1%C2%B0%20dia.pdf" target="_blank">
+          <button class="prova-btn btn-d1" onclick="openTimer('Prova%20Amarela-CPACN-2021-1%C2%B0%20dia.pdf','cn1')">
             <span class="prova-btn-ico">📐</span>
             <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
-          <a class="prova-btn btn-d2" href="Prova%20Amarela-CPACN-2021%202%C2%B0%20dia.pdf" target="_blank">
+            <span class="prova-btn-arr">⏱</span>
+          </button>
+          <button class="prova-btn btn-d2" onclick="openTimer('Prova%20Amarela-CPACN-2021%202%C2%B0%20dia.pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências &amp; Hist</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
+            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
+            <span class="prova-btn-arr">⏱</span>
+          </button>
         </div>
       </div>
 
@@ -402,16 +437,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           <div class="prova-badge">CPACN</div>
         </div>
         <div class="prova-btns">
-          <a class="prova-btn btn-d1" href="CPACN-2020%20%20matem%C3%A1tica%20e%20ingl%C3%AAs%201%C2%BADIA%20PROVA%20AMARELA.pdf" target="_blank">
+          <button class="prova-btn btn-d1" onclick="openTimer('CPACN-2020%20%20matem%C3%A1tica%20e%20ingl%C3%AAs%201%C2%BADIA%20PROVA%20AMARELA.pdf','cn1')">
             <span class="prova-btn-ico">📐</span>
             <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
-          <a class="prova-btn btn-d2" href="CPACN-2020%20portugu%C3%AAs%2C%20estudos%20sociais%20e%20ci%C3%AAncias%202%C2%BADIA%20PROVA%20AMARELA.pdf" target="_blank">
+            <span class="prova-btn-arr">⏱</span>
+          </button>
+          <button class="prova-btn btn-d2" onclick="openTimer('CPACN-2020%20portugu%C3%AAs%2C%20estudos%20sociais%20e%20ci%C3%AAncias%202%C2%BADIA%20PROVA%20AMARELA.pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências &amp; Hist</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
+            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
+            <span class="prova-btn-arr">⏱</span>
+          </button>
         </div>
       </div>
 
@@ -421,16 +456,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           <div class="prova-badge">CPACN</div>
         </div>
         <div class="prova-btns">
-          <a class="prova-btn btn-d1" href="AMARELA2019%20-%201%C2%BADIA.pdf" target="_blank">
+          <button class="prova-btn btn-d1" onclick="openTimer('AMARELA2019%20-%201%C2%BADIA.pdf','cn1')">
             <span class="prova-btn-ico">📐</span>
             <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
-          <a class="prova-btn btn-d2" href="AMARELA%202019-%202%C2%BA%20DIA.pdf" target="_blank">
+            <span class="prova-btn-arr">⏱</span>
+          </button>
+          <button class="prova-btn btn-d2" onclick="openTimer('AMARELA%202019-%202%C2%BA%20DIA.pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências &amp; Hist</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
+            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
+            <span class="prova-btn-arr">⏱</span>
+          </button>
         </div>
       </div>
 
@@ -440,16 +475,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           <div class="prova-badge">CPACN</div>
         </div>
         <div class="prova-btns">
-          <a class="prova-btn btn-d1" href="CPACN%202018%20MATEM%C3%81TICA%20E%20INGL%C3%8AS%20-%20AMARELA.pdf" target="_blank">
+          <button class="prova-btn btn-d1" onclick="openTimer('CPACN%202018%20MATEM%C3%81TICA%20E%20INGL%C3%8AS%20-%20AMARELA.pdf','cn1')">
             <span class="prova-btn-ico">📐</span>
             <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
-          <a class="prova-btn btn-d2" href="CPACN%202018%20PORTUGU%C3%8AS%2C%20ESTUDOS%20SOCIAIS%20E%20CI%C3%8ANCIAS%20-%20AMARELA.pdf" target="_blank">
+            <span class="prova-btn-arr">⏱</span>
+          </button>
+          <button class="prova-btn btn-d2" onclick="openTimer('CPACN%202018%20PORTUGU%C3%8AS%2C%20ESTUDOS%20SOCIAIS%20E%20CI%C3%8ANCIAS%20-%20AMARELA.pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências &amp; Hist</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
+            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
+            <span class="prova-btn-arr">⏱</span>
+          </button>
         </div>
       </div>
 
@@ -459,16 +494,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           <div class="prova-badge">CPACN</div>
         </div>
         <div class="prova-btns">
-          <a class="prova-btn btn-d1" href="CPACN_2017_%201%C2%AAFASE_AMARELA.pdf" target="_blank">
+          <button class="prova-btn btn-d1" onclick="openTimer('CPACN_2017_%201%C2%AAFASE_AMARELA.pdf','cn1')">
             <span class="prova-btn-ico">📐</span>
             <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
-          <a class="prova-btn btn-d2" href="2017%20-%202%C2%AA%20Fase%20(Portugu%C3%AAs%2C%20Estudo%20Sociais%20e%20Ci%C3%AAnciass)%20%20Prova%20AMARELA.pdf" target="_blank">
+            <span class="prova-btn-arr">⏱</span>
+          </button>
+          <button class="prova-btn btn-d2" onclick="openTimer('2017%20-%202%C2%AA%20Fase%20(Portugu%C3%AAs%2C%20Estudo%20Sociais%20e%20Ci%C3%AAnciass)%20%20Prova%20AMARELA.pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências &amp; Hist</span>
-            <span class="prova-btn-arr">↗</span>
-          </a>
+            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
+            <span class="prova-btn-arr">⏱</span>
+          </button>
         </div>
       </div>
 
@@ -479,6 +514,20 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
   <!-- ══ GUIA DE ESTUDOS ══ -->
   <div id="tab-guide" class="hidden">
     <div id="sgt-cn"></div>
+    <div class="st-card">
+      <div class="st-card-hdr"><span class="st-card-ico">⏱️</span><span class="st-card-title">Cronômetro de Estudos</span></div>
+      <div class="st-card-body">
+        <div class="st-wrap">
+          <div class="st-num" id="stDisplay">00:00:00</div>
+          <div class="st-lbl">tempo na sessão atual</div>
+        </div>
+        <div class="st-grid">
+          <button class="stbtn-go" id="stBtnGo" onclick="stToggle()">▶ Iniciar</button>
+          <button class="stbtn-rst" onclick="stReset()">↺ Resetar</button>
+        </div>
+        <div class="st-total">Total acumulado: <strong id="stTotalHours">0.0 h</strong></div>
+      </div>
+    </div>
   </div>
 
   <!-- ══ ESTATÍSTICAS ══ -->
@@ -1044,6 +1093,224 @@ const CN_INSIGHTS = [
 ];
 
 renderStats('stt-cn', CN_DATA, CN_TOTAL, CN_ANOS, 'Colégio Naval', CN_INSIGHTS);
+
+/* ── TIMER DE PROVAS ── */
+var _tInterval = null;
+var _tPDF = '';
+var _tTipo = '';
+
+var TIMER_DURATIONS = { cn1: 5*3600, cn2: 5*3600, epcar: 4*3600 };
+var TIMER_LABELS = { cn1: 'CPACN — 1º Dia', cn2: 'CPACN — 2º Dia', epcar: 'EPCAr' };
+
+function openTimer(pdfFile, tipo) {
+  _tPDF = pdfFile;
+  _tTipo = tipo;
+  var saved = localStorage.getItem('paTEndAt');
+  var savedTipo = localStorage.getItem('paTTipo');
+  if (!saved || savedTipo !== tipo) {
+    localStorage.removeItem('paTEndAt');
+    localStorage.removeItem('paTTipo');
+    localStorage.removeItem('paTStart');
+    localStorage.removeItem('paTRunning');
+  }
+  _renderTimer();
+  document.getElementById('moTimer').style.display = 'flex';
+}
+
+function closeTimer() {
+  clearInterval(_tInterval);
+  _tInterval = null;
+  document.getElementById('moTimer').style.display = 'none';
+}
+
+function _tComputeSecs() {
+  var endAt = parseInt(localStorage.getItem('paTEndAt') || '0', 10);
+  var running = localStorage.getItem('paTRunning') === '1';
+  if (!endAt) {
+    return { secs: TIMER_DURATIONS[_tTipo] || 18000, running: false, virgin: true };
+  }
+  if (running) {
+    var rem = Math.max(0, Math.round((endAt - Date.now()) / 1000));
+    return { secs: rem, running: true, virgin: false };
+  } else {
+    var paused = parseInt(localStorage.getItem('paTSecs') || '0', 10);
+    return { secs: paused, running: false, virgin: false };
+  }
+}
+
+function _fmt(s) {
+  var h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+  return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+}
+
+function _renderTimer() {
+  var st = _tComputeSecs();
+  var disp = document.getElementById('tDisplay');
+  var lbl = document.getElementById('tLabel');
+  var btn = document.getElementById('tBtnGo');
+  var title = document.getElementById('tExamTitle');
+  if (title) title.textContent = TIMER_LABELS[_tTipo] || 'Simulado';
+  if (disp) {
+    disp.textContent = _fmt(st.secs);
+    if (st.secs <= 300 && !st.virgin) disp.classList.add('t-warn');
+    else disp.classList.remove('t-warn');
+  }
+  if (lbl) lbl.textContent = st.secs === 0 ? 'Tempo esgotado!' : (st.virgin ? 'Tempo disponível' : 'Tempo restante');
+  if (btn) btn.textContent = st.running ? '⏸ Pausar' : (st.virgin ? '▶ Iniciar' : '▶ Continuar');
+  if (st.running && !_tInterval) {
+    _tInterval = setInterval(_tickTimer, 1000);
+  } else if (!st.running && _tInterval) {
+    clearInterval(_tInterval);
+    _tInterval = null;
+  }
+}
+
+function _tickTimer() {
+  var endAt = parseInt(localStorage.getItem('paTEndAt') || '0', 10);
+  var rem = Math.max(0, Math.round((endAt - Date.now()) / 1000));
+  var disp = document.getElementById('tDisplay');
+  var lbl = document.getElementById('tLabel');
+  if (disp) {
+    disp.textContent = _fmt(rem);
+    if (rem <= 300) disp.classList.add('t-warn');
+    else disp.classList.remove('t-warn');
+  }
+  if (rem === 0) {
+    clearInterval(_tInterval); _tInterval = null;
+    localStorage.setItem('paTRunning', '0');
+    if (lbl) lbl.textContent = 'Tempo esgotado!';
+    var btn = document.getElementById('tBtnGo');
+    if (btn) btn.textContent = '▶ Iniciar';
+  }
+}
+
+function timerToggle() {
+  var st = _tComputeSecs();
+  if (st.running) {
+    clearInterval(_tInterval); _tInterval = null;
+    localStorage.setItem('paTRunning', '0');
+    localStorage.setItem('paTSecs', String(st.secs));
+    localStorage.setItem('paTTipo', _tTipo);
+    _renderTimer();
+  } else {
+    var secs = st.virgin ? (TIMER_DURATIONS[_tTipo] || 18000) : st.secs;
+    var endAt = Date.now() + secs * 1000;
+    localStorage.setItem('paTEndAt', String(endAt));
+    localStorage.setItem('paTRunning', '1');
+    localStorage.setItem('paTTipo', _tTipo);
+    _tInterval = setInterval(_tickTimer, 1000);
+    var btn = document.getElementById('tBtnGo');
+    if (btn) btn.textContent = '⏸ Pausar';
+    var lbl = document.getElementById('tLabel');
+    if (lbl) lbl.textContent = 'Tempo restante';
+  }
+}
+
+function timerReset() {
+  clearInterval(_tInterval); _tInterval = null;
+  localStorage.removeItem('paTEndAt');
+  localStorage.removeItem('paTRunning');
+  localStorage.removeItem('paTSecs');
+  localStorage.removeItem('paTTipo');
+  _renderTimer();
+}
+
+function timerOpenPDF() {
+  if (_tPDF) window.open(_tPDF, '_blank');
+}
+
+function timerDone() {
+  clearInterval(_tInterval); _tInterval = null;
+  localStorage.removeItem('paTEndAt');
+  localStorage.removeItem('paTRunning');
+  localStorage.removeItem('paTSecs');
+  localStorage.removeItem('paTTipo');
+  document.getElementById('moTimer').style.display = 'none';
+}
+
+/* ── CRONÔMETRO DE ESTUDOS ── */
+var _stInterval = null;
+
+function _stGetSecs() {
+  var base = parseInt(localStorage.getItem('paStBase') || '0', 10);
+  var startTs = parseInt(localStorage.getItem('paStStart') || '0', 10);
+  if (startTs > 0) {
+    return base + Math.floor((Date.now() - startTs) / 1000);
+  }
+  return base;
+}
+
+function _updateStDisplay() {
+  var s = _stGetSecs();
+  var h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+  var disp = document.getElementById('stDisplay');
+  if (disp) disp.textContent = String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+  var total = parseFloat(localStorage.getItem('paStudyHours') || '0') + s/3600;
+  var tot = document.getElementById('stTotalHours');
+  if (tot) tot.textContent = total.toFixed(1) + ' h';
+  var btn = document.getElementById('stBtnGo');
+  var startTs = parseInt(localStorage.getItem('paStStart') || '0', 10);
+  if (btn) btn.textContent = startTs > 0 ? '⏸ Pausar' : '▶ Iniciar';
+}
+
+function stToggle() {
+  var startTs = parseInt(localStorage.getItem('paStStart') || '0', 10);
+  if (startTs > 0) {
+    var elapsed = Math.floor((Date.now() - startTs) / 1000);
+    var base = parseInt(localStorage.getItem('paStBase') || '0', 10);
+    localStorage.setItem('paStBase', String(base + elapsed));
+    localStorage.removeItem('paStStart');
+    clearInterval(_stInterval); _stInterval = null;
+  } else {
+    localStorage.setItem('paStStart', String(Date.now()));
+    if (!_stInterval) _stInterval = setInterval(_updateStDisplay, 1000);
+  }
+  _updateStDisplay();
+}
+
+function stReset() {
+  var base = parseInt(localStorage.getItem('paStBase') || '0', 10);
+  var startTs = parseInt(localStorage.getItem('paStStart') || '0', 10);
+  var sessionSecs = startTs > 0 ? base + Math.floor((Date.now() - startTs)/1000) : base;
+  var prev = parseFloat(localStorage.getItem('paStudyHours') || '0');
+  localStorage.setItem('paStudyHours', String(prev + sessionSecs/3600));
+  localStorage.setItem('paStBase', '0');
+  localStorage.removeItem('paStStart');
+  clearInterval(_stInterval); _stInterval = null;
+  _updateStDisplay();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  _updateStDisplay();
+  var startTs = parseInt(localStorage.getItem('paStStart') || '0', 10);
+  if (startTs > 0 && !_stInterval) {
+    _stInterval = setInterval(_updateStDisplay, 1000);
+  }
+  var savedTipo = localStorage.getItem('paTTipo');
+  if (savedTipo && localStorage.getItem('paTEndAt')) {
+    _tTipo = savedTipo;
+    _tPDF = localStorage.getItem('paTLastPDF') || '';
+  }
+});
 </script>
+
+<div id="moTimer" class="mo-ov" style="display:none">
+  <div class="mo-box">
+    <div class="t-exam" id="tExamTitle">Simulado</div>
+    <div class="t-wrap">
+      <div class="t-num" id="tDisplay">00:00:00</div>
+      <div class="t-lbl" id="tLabel">Tempo disponível</div>
+    </div>
+    <div class="t-grid">
+      <button class="tbtn-go" id="tBtnGo" onclick="timerToggle()">▶ Iniciar</button>
+      <button class="tbtn-pdf" onclick="timerOpenPDF()">📄 Abrir Prova</button>
+      <button class="tbtn-rst" onclick="timerReset()">↺ Reiniciar</button>
+      <button class="tbtn-ok" onclick="timerDone()">✓ Concluir</button>
+    </div>
+    <div style="text-align:center;margin-top:14px">
+      <button onclick="closeTimer()" style="background:none;border:none;color:var(--t3);font-size:12px;cursor:pointer;font-family:inherit">Fechar sem concluir</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
