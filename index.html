@@ -100,19 +100,31 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
 .stat-chip-val{font-size:20px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
 .stat-chip-sub{font-size:10px;color:var(--t3);margin-top:2px}
 
-/* ── BAR CHART ── */
-.chart-wrap{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:20px 20px 12px;margin-bottom:22px;box-shadow:0 2px 10px rgba(26,46,68,.07)}
-.chart-title{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
-.bar-label{font-size:11.5px;color:var(--t2);font-weight:600;width:200px;flex-shrink:0;white-space:normal;overflow:visible;text-overflow:unset;text-align:right;line-height:1.4;word-break:break-word}
-.bar-track{flex:1;height:18px;background:#edf9f3;border-radius:6px;overflow:hidden;position:relative}
-.bar-fill{height:100%;border-radius:6px;transition:width .4s ease;min-width:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
-.bar-fill span{font-size:10px;font-weight:800;color:#fff;white-space:nowrap}
-.bar-fill.freq-hot{background:linear-gradient(90deg,#e53e3e,#c53030)}
-.bar-fill.freq-high{background:linear-gradient(90deg,#dd6b20,#c05621)}
-.bar-fill.freq-med{background:linear-gradient(90deg,#d69e2e,#b7791f)}
-.bar-fill.freq-low{background:linear-gradient(90deg,#38a169,#276749)}
-.bar-fill.freq-vlow{background:linear-gradient(90deg,#718096,#4a5568)}
+/* ── RANKING LIST ── */
+.rank-wrap{background:#fff;border:1.5px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 12px rgba(26,46,68,.08)}
+.rank-header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:16px 20px;display:flex;align-items:center;gap:10px}
+.rank-header-title{font-size:13px;font-weight:800;color:#fff;letter-spacing:.2px}
+.rank-list{padding:8px 0}
+.rank-item{display:flex;align-items:center;gap:14px;padding:11px 20px;position:relative;overflow:hidden;transition:background .15s}
+.rank-item:not(:last-child){border-bottom:1px solid #f0f4f8}
+.rank-item:hover{background:#f8fbff}
+.rank-bg{position:absolute;left:0;top:0;height:100%;border-radius:0;opacity:.07;pointer-events:none;transition:width .5s ease}
+.rank-num{font-size:18px;font-weight:900;color:var(--navy);width:26px;text-align:center;flex-shrink:0;line-height:1}
+.rank-num.top1{color:#f6ad00;font-size:20px}
+.rank-num.top3{color:#e07b39}
+.rank-num.top5{color:#1dc99e}
+.rank-name{flex:1;font-size:12.5px;font-weight:600;color:#2d3748;line-height:1.35}
+.rank-pct{font-size:13px;font-weight:800;flex-shrink:0;padding:4px 10px;border-radius:20px;min-width:52px;text-align:center}
+.rank-pct.fhot{background:#fff5f5;color:#c53030}
+.rank-pct.fhigh{background:#fffaf0;color:#c05621}
+.rank-pct.fmed{background:#fffff0;color:#b7791f}
+.rank-pct.flow{background:#f0fff4;color:#276749}
+.rank-pct.fvlow{background:#f7fafc;color:#4a5568}
+.rank-bg.fhot{background:#e53e3e}
+.rank-bg.fhigh{background:#dd6b20}
+.rank-bg.fmed{background:#d69e2e}
+.rank-bg.flow{background:#38a169}
+.rank-bg.fvlow{background:#718096}
 
 /* ── CATEGORY BARS ── */
 .cat-wrap{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:22px}
@@ -827,18 +839,18 @@ function renderStats(containerId, data, total, anos, exam, insights) {
 
   const insightHtml = ``;
 
+  const numClass = i => i===0?'rank-num top1':i<3?'rank-num top3':i<5?'rank-num top5':'rank-num';
   const barHtml = `
-    <div class="chart-wrap">
-      <div class="chart-title">📊 Top 10 assuntos mais cobrados</div>
-      ${top10.map(d=>`
-        <div class="bar-row">
-          <div class="bar-label">${d.a}</div>
-          <div class="bar-track">
-            <div class="bar-fill ${barClass(d.p)}" style="width:${(d.p/maxP*100).toFixed(1)}%">
-              <span>${d.p}%</span>
-            </div>
-          </div>
+    <div class="rank-wrap">
+      <div class="rank-header"><span style="font-size:18px">🏆</span><span class="rank-header-title">Top 10 assuntos mais cobrados — ${exam}</span></div>
+      <div class="rank-list">
+        ${top10.map((d,i)=>`
+        <div class="rank-item">
+          <div class="${numClass(i)}">${i+1}</div>
+          <div class="rank-name">${d.a}</div>
+          <div class="rank-pct ${dotClass(d.p)}">${d.p}%</div>
         </div>`).join('')}
+      </div>
     </div>`;
 
   const tableRows = data.map((d,i)=>`
