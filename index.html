@@ -130,17 +130,17 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
 /* ── FULL TABLE ── */
 .stat-table-wrap{background:#fff;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 10px rgba(26,46,68,.07)}
 .stat-table-title{font-size:13px;font-weight:800;color:var(--navy);padding:14px 18px;border-bottom:1.5px solid var(--border);display:flex;align-items:center;gap:8px}
-.stat-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.stat-table{width:100%;border-collapse:collapse;font-size:12px}
 .stat-table th{background:var(--gbg);padding:9px 14px;text-align:left;font-weight:800;color:var(--navy);font-size:11px;letter-spacing:.3px;border-bottom:1.5px solid var(--border)}
-.stat-table th:first-child{width:56px}
-.stat-table th:nth-child(3){width:60px}
 .stat-table th:not(:first-child){text-align:center}
-.stat-table td{padding:8px 14px;border-bottom:1px solid #edf9f3;color:var(--t2);font-weight:500;white-space:normal;word-break:break-word}
+.stat-table td{padding:8px 14px;border-bottom:1px solid #edf9f3;color:var(--t2);font-weight:500}
+.stat-table td:nth-child(2){white-space:normal;word-break:break-word;min-width:180px}
 .stat-table td:not(:first-child){text-align:center;font-weight:700}
+.stat-table td:nth-child(2){text-align:left;font-weight:500}
 .stat-table tr:last-child td{border-bottom:none}
 .stat-table tr:hover td{background:#f3fdf8}
 .freq-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;flex-shrink:0}
-.td-assunto{display:block;white-space:normal;word-break:break-word;overflow:visible}
+.td-assunto{display:block;white-space:normal;word-break:break-word;overflow:visible;max-width:none}
 .fhot{background:#e53e3e}.fhigh{background:#dd6b20}.fmed{background:#d69e2e}.flow{background:#38a169}.fvlow{background:#a0aec0}
 .pct-hot{color:#c53030;font-weight:900}.pct-high{color:#c05621;font-weight:900}.pct-med{color:#b7791f;font-weight:700}.pct-low{color:#276749}.pct-vlow{color:#718096}
 
@@ -780,7 +780,7 @@ function pctClass(p) { return 'pct-' + freqClass(p); }
 function renderStats(containerId, data, total, anos, exam, insights) {
   const top10 = data.slice(0, 10);
   const maxP = data[0].p;
-  const top1short = data[0].a.length > 22 ? data[0].a.substring(0,22)+'…' : data[0].a;
+  const top1short = data[0].a;
 
   const chipsHtml = `
     <div class="stat-chips">
@@ -797,7 +797,7 @@ function renderStats(containerId, data, total, anos, exam, insights) {
       <div class="chart-title">📊 Top 10 assuntos mais cobrados</div>
       ${top10.map(d=>`
         <div class="bar-row">
-          <div class="bar-label" title="${d.a}">${d.a}</div>
+          <div class="bar-label">${d.a}</div>
           <div class="bar-track">
             <div class="bar-fill ${barClass(d.p)}" style="width:${(d.p/maxP*100).toFixed(1)}%">
               <span>${d.p}%</span>
