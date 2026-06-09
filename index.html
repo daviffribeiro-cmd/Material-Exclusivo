@@ -927,9 +927,16 @@ function submeterRespostas() {
     total: 20
   };
 
-  var existentes = JSON.parse(localStorage.getItem('lista_mat_resultados') || '[]');
-  existentes.push(registro);
-  localStorage.setItem('lista_mat_resultados', JSON.stringify(existentes));
+  var fd = new FormData();
+  fd.append('nome',     registro.nome);
+  fd.append('telefone', registro.tel);
+  fd.append('escola',   registro.escola);
+  fd.append('acertos',  registro.acertos + '/20');
+  fd.append('respostas',registro.respostas.join(' '));
+  fd.append('data',     registro.data);
+  fd.append('_subject', 'Nova resposta — Lista Exclusiva de Matemática');
+  fd.append('_captcha', 'false');
+  fetch('https://formsubmit.co/davi.ribeiro@matrizeducacao.com.br', { method: 'POST', mode: 'no-cors', body: fd }).catch(function(){});
 
   document.getElementById('lista-conteudo').style.display='none';
   document.getElementById('lista-ok').style.display='block';
