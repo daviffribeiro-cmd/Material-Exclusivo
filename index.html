@@ -9,6 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+::-webkit-scrollbar{display:none}
+html{scrollbar-width:none;-ms-overflow-style:none}
 :root{
   --teal:#1dc99e;--lime:#84d43c;--navy:#1a2e44;--navy2:#223758;
   --grad:linear-gradient(90deg,#1dc99e,#84d43c);
@@ -235,6 +237,24 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
   .hdr-title{font-size:21px}
 }
 
+/* ── MOBILE RESPONSIVE ── */
+@media(max-width:640px){
+  .epcar-hero{flex-direction:column!important;gap:20px!important;padding:20px 14px!important}
+  .aluno-card{padding:20px 28px!important;width:100%!important;box-sizing:border-box!important}
+  .topics-grid{grid-template-columns:1fr}
+  .dicas-grid{grid-template-columns:1fr}
+  .plan-grid{grid-template-columns:1fr}
+  .plan-item:nth-child(odd){border-right:none}
+  .mo-box{padding:20px 18px}
+  .t-num{font-size:48px}
+  .stat-chips{grid-template-columns:1fr 1fr}
+  .stat-table td:nth-child(2){min-width:120px}
+  .main{padding:16px 10px 80px}
+  .hdr-inner{gap:12px}
+  .hdr-logo{width:46px;height:46px}
+  .cat-label{width:90px;font-size:10.5px}
+}
+
 /* ── MODAL OVERLAY ── */
 .mo-ov{position:fixed;inset:0;background:rgba(10,20,30,.82);backdrop-filter:blur(5px);z-index:999;display:flex;align-items:center;justify-content:center;padding:16px}
 .mo-box{background:#fff;border-radius:20px;padding:28px 30px;max-width:400px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.4)}
@@ -246,6 +266,8 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
 .t-lbl{font-size:11px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-top:6px}
 .t-warn{color:#e53e3e!important;animation:tblink .8s infinite}
 @keyframes tblink{0%,100%{opacity:1}50%{opacity:.3}}
+.live-dot{display:inline-block;width:9px;height:9px;background:#ff0000;border-radius:50%;margin-right:6px;vertical-align:middle;animation:livepulse 1.2s ease-in-out infinite;box-shadow:0 0 0 0 rgba(255,0,0,.6)}
+@keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(255,0,0,.7)}60%{box-shadow:0 0 0 7px rgba(255,0,0,0)}100%{box-shadow:0 0 0 0 rgba(255,0,0,0)}}
 .t-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
 .t-grid button{padding:11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:opacity .2s;font-family:inherit}
 .t-grid button:hover{opacity:.85}
@@ -302,11 +324,11 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
 
   <!-- ══ EPCAr ══ -->
   <div id="tab-epcar">
-    <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:32px;padding:28px 24px;flex-wrap:wrap;text-align:center;background:linear-gradient(135deg,#0b1a2b,#1a2e44);border-radius:16px;margin:8px">
+    <div class="epcar-hero" style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:32px;padding:28px 24px;flex-wrap:wrap;text-align:center;background:linear-gradient(135deg,#0b1a2b,#1a2e44);border-radius:16px;margin:8px">
       <!-- esquerda: texto + botão -->
       <div style="display:flex;flex-direction:column;align-items:center;max-width:340px">
         <div style="font-size:36px;margin-bottom:8px">📡</div>
-        <div style="font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#ff0000;margin-bottom:6px">AO VIVO</div>
+        <div style="font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#ff0000;margin-bottom:6px"><span class="live-dot"></span>AO VIVO</div>
         <h2 style="font-size:clamp(20px,3vw,28px);font-weight:900;color:#fff;line-height:1.2;margin-bottom:10px">Acompanhe nosso<br>gabarito ao vivo</h2>
         <p style="font-size:13px;color:rgba(255,255,255,.65);margin-bottom:20px;line-height:1.5">Acompanhe o gabarito da EPCAr 2027 em tempo real. Ative as notificações para não perder!</p>
         <a href="https://www.youtube.com/@MatrizEduca%C3%A7%C3%A3o" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:#ff0000;color:#fff;text-decoration:none;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:900;box-shadow:0 6px 20px rgba(255,0,0,.3);transition:transform .15s,box-shadow .15s" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 10px 28px rgba(255,0,0,.42)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 6px 20px rgba(255,0,0,.3)'">
@@ -315,8 +337,8 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
         </a>
       </div>
       <!-- direita: card aluno -->
-      <div style="display:flex;flex-direction:column;align-items:center;background:linear-gradient(135deg,#0b1a2b,#1a2e44);border-radius:20px;padding:28px 44px;box-shadow:0 8px 28px rgba(0,0,0,.22)">
-        <div style="font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;background:linear-gradient(90deg,#1dc99e,#84d43c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px">Aluno Destaque</div>
+      <div class="aluno-card" style="display:flex;flex-direction:column;align-items:center;background:linear-gradient(135deg,#0b1a2b,#1a2e44);border-radius:20px;padding:28px 44px;box-shadow:0 8px 28px rgba(0,0,0,.22)">
+        <div style="font-size:13px;font-weight:900;letter-spacing:3px;text-transform:uppercase;background:linear-gradient(90deg,#1dc99e,#84d43c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px">Aluno Destaque</div>
         <div style="position:relative;margin-bottom:16px">
           <div style="width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,#1dc99e,#84d43c);padding:4px">
             <img src="joao-delvaux.jpg" alt="João Delvaux" style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;display:block">
@@ -338,13 +360,13 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
       <div class="aviso-ico">⚓</div>
       <div>
         <strong>Colégio Naval — CN</strong>
-        <p>Provas oficiais do Concurso de Admissão de 2017 a 2025. Dois dias de prova por ano.</p>
+        <p>Provas oficiais do Concurso de Admissão dos últimos 5 anos (2021–2025). Dois dias de prova por ano.</p>
       </div>
     </div>
     <div class="sec-title">
       <div class="sec-title-bar"></div>
       <h2>Provas Colégio Naval</h2>
-      <span>2017 – 2025</span>
+      <span>(Últimos 5 anos)</span>
     </div>
     <div class="provas-grid">
 
@@ -436,82 +458,6 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
             <span class="prova-btn-arr">⏱</span>
           </button>
           <button class="prova-btn btn-d2" onclick="openTimer('Prova%20Amarela-CPACN-2021%202%C2%B0%20dia.pdf','cn2')">
-            <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
-            <span class="prova-btn-arr">⏱</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="prova-card">
-        <div class="prova-card-top">
-          <div class="prova-year">2020</div>
-          <div class="prova-badge">CPACN</div>
-        </div>
-        <div class="prova-btns">
-          <button class="prova-btn btn-d1" onclick="openTimer('CPACN-2020%20%20matem%C3%A1tica%20e%20ingl%C3%AAs%201%C2%BADIA%20PROVA%20AMARELA.pdf','cn1')">
-            <span class="prova-btn-ico">📐</span>
-            <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">⏱</span>
-          </button>
-          <button class="prova-btn btn-d2" onclick="openTimer('CPACN-2020%20portugu%C3%AAs%2C%20estudos%20sociais%20e%20ci%C3%AAncias%202%C2%BADIA%20PROVA%20AMARELA.pdf','cn2')">
-            <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
-            <span class="prova-btn-arr">⏱</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="prova-card">
-        <div class="prova-card-top">
-          <div class="prova-year">2019</div>
-          <div class="prova-badge">CPACN</div>
-        </div>
-        <div class="prova-btns">
-          <button class="prova-btn btn-d1" onclick="openTimer('AMARELA2019%20-%201%C2%BADIA.pdf','cn1')">
-            <span class="prova-btn-ico">📐</span>
-            <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">⏱</span>
-          </button>
-          <button class="prova-btn btn-d2" onclick="openTimer('AMARELA%202019-%202%C2%BA%20DIA.pdf','cn2')">
-            <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
-            <span class="prova-btn-arr">⏱</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="prova-card">
-        <div class="prova-card-top">
-          <div class="prova-year">2018</div>
-          <div class="prova-badge">CPACN</div>
-        </div>
-        <div class="prova-btns">
-          <button class="prova-btn btn-d1" onclick="openTimer('CPACN%202018%20MATEM%C3%81TICA%20E%20INGL%C3%8AS%20-%20AMARELA.pdf','cn1')">
-            <span class="prova-btn-ico">📐</span>
-            <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">⏱</span>
-          </button>
-          <button class="prova-btn btn-d2" onclick="openTimer('CPACN%202018%20PORTUGU%C3%8AS%2C%20ESTUDOS%20SOCIAIS%20E%20CI%C3%8ANCIAS%20-%20AMARELA.pdf','cn2')">
-            <span class="prova-btn-ico">📖</span>
-            <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
-            <span class="prova-btn-arr">⏱</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="prova-card">
-        <div class="prova-card-top">
-          <div class="prova-year">2017</div>
-          <div class="prova-badge">CPACN</div>
-        </div>
-        <div class="prova-btns">
-          <button class="prova-btn btn-d1" onclick="openTimer('CPACN_2017_%201%C2%AAFASE_AMARELA.pdf','cn1')">
-            <span class="prova-btn-ico">📐</span>
-            <span class="prova-btn-txt">1º Dia — Mat &amp; Inglês</span>
-            <span class="prova-btn-arr">⏱</span>
-          </button>
-          <button class="prova-btn btn-d2" onclick="openTimer('2017%20-%202%C2%AA%20Fase%20(Portugu%C3%AAs%2C%20Estudo%20Sociais%20e%20Ci%C3%AAnciass)%20%20Prova%20AMARELA.pdf','cn2')">
             <span class="prova-btn-ico">📖</span>
             <span class="prova-btn-txt">2º Dia — Port, Ciências, Est. Sociais &amp; Red.</span>
             <span class="prova-btn-arr">⏱</span>
@@ -648,11 +594,11 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
           </div>
         </div>
         <div style="margin-bottom:18px">
-          <label style="font-size:12px;font-weight:700;color:#1a2e44;display:block;margin-bottom:5px">Onde estuda</label>
+          <label style="font-size:12px;font-weight:700;color:#1a2e44;display:block;margin-bottom:5px">Onde estuda?</label>
           <input id="lista-escola" type="text" placeholder="Nome da escola ou curso" style="width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:14px;font-family:inherit;outline:none;box-sizing:border-box;transition:border-color .2s" onfocus="this.style.borderColor='#1dc99e'" onblur="this.style.borderColor='#e2e8f0'">
         </div>
         <div id="lista-erro" style="display:none;font-size:12px;color:#dc2626;font-weight:600;margin-bottom:10px">⚠️ Preencha todos os campos para continuar.</div>
-        <button onclick="liberarLista()" style="width:100%;padding:12px;background:linear-gradient(90deg,#1dc99e,#84d43c);border:none;border-radius:9px;font-size:15px;font-weight:900;color:#0b1a2b;cursor:pointer;font-family:inherit;transition:opacity .2s" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Acessar Material →</button>
+        <button onclick="liberarLista()" style="width:100%;padding:12px;background:linear-gradient(90deg,#1dc99e,#84d43c);border:none;border-radius:9px;font-size:15px;font-weight:900;color:#0b1a2b;cursor:pointer;font-family:inherit;transition:opacity .2s" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Acessar Material</button>
       </div>
     </div>
 
@@ -694,7 +640,7 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
 
 <!-- FOOTER -->
 <div class="footer">
-  Desenvolvido por <span>Matriz Educação</span> · Todos os direitos reservados
+  Desenvolvido por <span>Davi Ferrarez</span> · Matriz Educação · Todos os direitos reservados
 </div>
 
 <script>
